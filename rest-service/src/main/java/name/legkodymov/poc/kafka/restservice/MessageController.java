@@ -5,6 +5,12 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class MessageController {
 
+    private final MessageProducer producer;
+
+    public MessageController(MessageProducer producer) {
+        this.producer = producer;
+    }
+
     @GetMapping("/hello")
     public String hello() {
         return "Hello, world!";
@@ -23,6 +29,7 @@ public class MessageController {
     @PostMapping("/messages")
     @ResponseBody
     public TestMessage sendMessage(@RequestBody TestMessage message) {
+        producer.send(message);
         return message;
     }
 }
