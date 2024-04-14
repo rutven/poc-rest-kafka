@@ -1,11 +1,14 @@
 package name.legkodymov.poc.kafka.restservice;
 
+import org.slf4j.Logger;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class MessageController {
 
     private final MessageProducer producer;
+
+    private final Logger logger = org.slf4j.LoggerFactory.getLogger(MessageController.class);
 
     public MessageController(MessageProducer producer) {
         this.producer = producer;
@@ -29,6 +32,7 @@ public class MessageController {
     @PostMapping("/messages")
     @ResponseBody
     public TestMessage sendMessage(@RequestBody TestMessage message) {
+        logger.info("Sending message: " + message);
         producer.send(message);
         return message;
     }

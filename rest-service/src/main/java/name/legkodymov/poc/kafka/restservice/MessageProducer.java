@@ -7,12 +7,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class MessageProducer {
 
-    public static final String TOPIC_NAME = "topic1";
-
     @Autowired
-    private KafkaTemplate<Object, TestMessage> template;
+    private KafkaTemplate<String, TestMessage> template;
 
     public void send(TestMessage message) {
-        template.send(TOPIC_NAME, message);
+        template.send(AppConst.TOPIC_NAME, message);
     }
 }

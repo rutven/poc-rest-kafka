@@ -14,7 +14,7 @@ public class RestServiceApplication {
 
 	@Bean
 	public NewTopic topic() {
-		return new NewTopic(MessageProducer.TOPIC_NAME, 2, (short) 1);
+		return new NewTopic(AppConst.TOPIC_NAME, 2, (short) 1);
 	}
 
 }
