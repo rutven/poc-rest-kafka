@@ -26,6 +26,7 @@ public class MessageController {
         message.setChannel("email");
         message.setTitle("My test message");
         message.setText("My test message content.");
+        logger.info("Returning message: " + message);
         return message;
     }
 

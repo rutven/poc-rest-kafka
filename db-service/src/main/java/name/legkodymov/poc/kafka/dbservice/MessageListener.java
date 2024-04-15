@@ -1,16 +1,17 @@
 package name.legkodymov.poc.kafka.dbservice;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
 @Component
 public class MessageListener {
 
-    private static final String GROUP_ID = "group_id";
-    public static final String TOPIC_NAME = "message-topic";
+    private final Logger logger = (Logger) LoggerFactory.getLogger(MessageListener.class);
 
-    @KafkaListener(topics = TOPIC_NAME, groupId = GROUP_ID)
+    @KafkaListener(topics = AppConst.TOPIC_NAME)
     public void listen(TestMessage message) {
-        System.out.println("Received message: " + message.toString());
+        logger.info("Received message: " + message.toString());
     }
 }
